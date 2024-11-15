@@ -1,16 +1,4 @@
-# 🚨 _One-Stop-Shop_ Klipper Configuration
-
-This branch contains the Klipper configuration and firmware for the **Sovol SV06** 3D printer.
-
-| Printer                                                         | Branch                                                                                    |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ${\normalsize{\textcolor{darkturquoise}{\texttt{Sovol SV06}}}}$ | ⚡ ${\small{\textcolor{darkturquoise}{\texttt{YOU ARE HERE}}}}$ ⚡                        |
-| Sovol SV06 Skr-Mini-E3-V3.0                                     | [skr-mini-e3-v3](https://github.com/bassamanator/Sovol-SV06-firmware/tree/skr-mini-e3-v3) |
-| Sovol SV06 Plus                                                 | [sv06-plus](https://github.com/bassamanator/Sovol-SV06-firmware/tree/sv06-plus)           |
-| Sovol SV06 Fly-E3-Pro-V3                                        | [fly-e3-pro-v3](https://github.com/ElPainis/Fly-E3-Pro-v3) \*\*                           |
-| All other printers                                              | [any-printer](https://github.com/bassamanator/Sovol-SV06-firmware/tree/any-printer)       |
-
-\*\* _Maintained by [ElPainis](https://github.com/ElPainis)_
+# 🚨 _One-Stop-Shop_ Klipper Configuration to be used with KCM set from CoPrint
 
 I am creating these files for my personal use and cannot be held responsible for what it might do to your printer. Use at your own risk.
 
@@ -19,6 +7,7 @@ I am creating these files for my personal use and cannot be held responsible for
 - [Features](#features)
 - [Stay Up-to-Date](#stay-up-to-date)
 - [Preface](#preface)
+- [PreRequisites](#prerequisistes)
 - [Before You Begin](#before-you-begin)
 - [Klipper Installation](#klipper-installation)
   - [Flash Firmware](#flash-firmware)
@@ -71,6 +60,12 @@ Watch for [updates](https://github.com/bassamanator/Sovol-SV06-firmware/discussi
 Although I've made switching over to Klipper as easy as is possible, it can still be a challenge for some, especially considering that most of you have likely never used GNU+Linux. Save yourself the frustration, and fully read this documentation. Also note that Klipper is not a _must_, and is not for everyone. You can stick with Marlin, and have a fine 3D printing experience.
 
 In many ways, this entire repository can be considered _my opinion_ on the `3D printing experience` and this has been _my attempt_ to share that experience. Some factors, such as _accuracy_ and _testing_, have been at the forefront of my thoughts during this process. I hope you find this repository suitable. Cheers.
+
+[🔼 Back to top](#outline)
+
+## PreRequisites
+
+Before using the following configuration you will need to print the following files to adapt the KCM set to the Sovol SV06 [HERE](https://www.thingiverse.com/thing:6829546)
 
 [🔼 Back to top](#outline)
 
@@ -152,7 +147,7 @@ Please note:
 
 #### Method 2: Download the ZIP
 
-1. [Download](https://github.com/bassamanator/Sovol-SV06-firmware/archive/refs/heads/master.zip) the `ZIP` file containing the Klipper configuration.
+1. [Download](https://github.com/Azkali/Sovol-SV06-firmware/archive/refs/heads/master.zip) the `ZIP` file containing the Klipper configuration.
 2. See `Step 2` in `Method 1`.
 3. The parent folder in the `ZIP` is `Sovol-SV06-firmware-master`. This is relevant in the next step.
 4. Extract **only** the _contents_ of the parent folder into `~/printer_data/config`.
@@ -208,19 +203,17 @@ If the Klipper flash that you did earlier was successful, and you've done everyt
    2. `G90`
    3. `G1 X223 F3000`
    4. `G1 Y223 F3000`
-2. Do a mechanical gantry calibration; `G34`. After the controlled collision against the beam at the top, there will be a 10 second pause for you to verify that both sides of the gantry are pressed up against the `stoppers` at the top. You will hear a succession of beeps.
-   1. Figure out your `Z` `position_max` by baby stepping your way up to the beam, and adjust `position_max`, if necessary.
-3. PID tune the bed. Ideally, all PID tuning should occur at the temperatures that you print most at.
+2. PID tune the bed. Ideally, all PID tuning should occur at the temperatures that you print most at.
    1. `PID_TEST_BED TEMP=70`
    2. `SAVE_CONFIG` (once completed)
-4. PID tune the extruder while part cooling fan runs at 25%.
+3. PID tune the extruder while part cooling fan runs at 25%.
    1. `PID_TEST_HOTEND TEMP=245`
    2. `SAVE_CONFIG` (once completed)
-5. Adjust `z_offset`. Make sure your nozzle if very clean. Do the [Paper test](https://www.klipper3d.org/Bed_Level.html?h=probe_calibrate#the-paper-test).
+4. Adjust `z_offset`. Make sure your nozzle if very clean. Do the [Paper test](https://www.klipper3d.org/Bed_Level.html?h=probe_calibrate#the-paper-test).
    1. `DO_PROBE_CALIBRATE`
    2. Follow `z_offset` setup in `Mainsail`/`Fluidd`.
    3. `SAVE_CONFIG` (once completed)
-6. Create a bed mesh.
+5. Create a bed mesh.
    1. `DO_CREATE_MESH`
    2. `SAVE_CONFIG` (once completed)
 
